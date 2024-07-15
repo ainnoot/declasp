@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "declasp"
+version = "0.0.1"
+description = ""
+authors = ["Antonio Ielo <antonio.ielo@unical.it>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+clingo = "^5.7.1"
+polars = "^0.20.24"
+rustxes = "^0.2.2"
+
+[tool.poetry.scripts]
+declasp = "declasp.cli:main"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.0"
+black = "^24.4.2"
+ruff = "^0.4.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
