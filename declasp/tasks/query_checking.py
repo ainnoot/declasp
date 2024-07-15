@@ -10,6 +10,7 @@ from itertools import chain
 
 from math import ceil
 
+
 class CaptureModels:
     def __init__(self, log_length):
         self.results = []
@@ -29,13 +30,16 @@ class CaptureModels:
 
         self.results.append(QueryCheckingResult(assignment, support))
 
+
 @dataclass(frozen=True)
 class QueryCheckingResult:
     assignment: Dict[str, str]
     support: float
 
 
-def query_checking(model: Model, log: StringEventLog, min_support: float, k: int) -> List[QueryCheckingResult]:
+def query_checking(
+    model: Model, log: StringEventLog, min_support: float, k: int
+) -> List[QueryCheckingResult]:
     """
     Returns up to `k` solutions to the query checking problem.
     """

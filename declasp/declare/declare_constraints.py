@@ -1,6 +1,7 @@
 import declasp.declare.constraint as C
 import dataclasses
 
+
 @dataclasses.dataclass(frozen=True, init=False)
 class Choice(C.Constraint):
     def __init__(self, a, b):

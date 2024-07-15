@@ -4,6 +4,7 @@ from typing import Dict, Tuple, Generator, List
 import clingo  # type: ignore
 from declasp.utils import get_variants, import_xes_log
 
+
 @dataclass(frozen=True)
 class Trace:
     case_identifier: str
@@ -11,15 +12,18 @@ class Trace:
 
     def reify(self):
         for t, a in enumerate(self.events):
-            yield clingo.Function('trace', [
-                clingo.String(self.case_identifier),
-                clingo.Number(t),
-                clingo.String(a)
-            ])
+            yield clingo.Function(
+                "trace",
+                [
+                    clingo.String(self.case_identifier),
+                    clingo.Number(t),
+                    clingo.String(a),
+                ],
+            )
 
     @staticmethod
     def from_csv(csv, identifier):
-        quoted_events = csv.split(',')
+        quoted_events = csv.split(",")
         events = []
         for x in quoted_events:
             events.append(x)

@@ -25,7 +25,7 @@ class CaptureModel:
             cid = Constraint.from_id(symbol.arguments[0].number)
             self.by_trace[tid][cid] = symbol.name == "compliant"
             self.by_constraint[cid][tid] = symbol.name == "compliant"
-            self.support[cid] += (1 if symbol.name == 'compliant' else 0)
+            self.support[cid] += 1 if symbol.name == "compliant" else 0
 
 
 @dataclass(frozen=True)
@@ -42,17 +42,18 @@ class ConformanceCheckingResult:
 
     def as_json(self):
         data = dict()
-        data['model'] = dict()
-        data['result'] = dict()
+        data["model"] = dict()
+        data["result"] = dict()
 
         for con in self.by_constraint:
             con_json = con.as_json()
-            con_json['support'] = round(self.support[con], 3)
-            data['model'][str(con.id)] = con_json
+            con_json["support"] = round(self.support[con], 3)
+            data["model"][str(con.id)] = con_json
 
         for trace, results in self.by_trace.items():
-            data['result'][trace] = {c.id: value for c, value in results.items()}
+            data["result"][trace] = {c.id: value for c, value in results.items()}
         return data
+
 
 def conformance_checking(model: Model, log: StringEventLog):
     if model.has_variables:
@@ -69,7 +70,12 @@ def conformance_checking(model: Model, log: StringEventLog):
     _ = ctl.solve(on_model=model_trap)
 
     sz = log.number_of_traces()
-    return ConformanceCheckingResult(model_trap.by_trace, model_trap.by_constraint, {c: s/sz for c, s in model_trap.support.items()})
+    return ConformanceCheckingResult(
+        model_trap.by_trace,
+        model_trap.by_constraint,
+        {c: s / sz for c, s in model_trap.support.items()},
+    )
+
 
 def conformance_checking_single_trace(model: Model, t: Trace):
     if model.has_variables:
@@ -83,9 +89,18 @@ def conformance_checking_single_trace(model: Model, t: Trace):
         add_facts_to_backend(backend, chain(model.reify(), t.reify()))
 
         # a single trace is its own variant
-        add_facts_to_backend(backend, [clingo.Function('case_identifier', [
-            clingo.String(t.case_identifier), clingo.String(t.case_identifier)
-        ])])
+        add_facts_to_backend(
+            backend,
+            [
+                clingo.Function(
+                    "case_identifier",
+                    [
+                        clingo.String(t.case_identifier),
+                        clingo.String(t.case_identifier),
+                    ],
+                )
+            ],
+        )
     ctl.ground([("base", [])])
     model_trap = CaptureModel()
     _ = ctl.solve(on_model=model_trap)

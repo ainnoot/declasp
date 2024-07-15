@@ -65,7 +65,10 @@ class Constraint:
         return "{}({})".format(self.template, ",".join(str(x) for x in self.arguments))
 
     def as_json(self):
-        return {"template": self.template, "arguments": [a.value for a in self.arguments]}
+        return {
+            "template": self.template,
+            "arguments": [a.value for a in self.arguments],
+        }
 
     def __post_init__(self):
         ConstraintsById.register(self)
