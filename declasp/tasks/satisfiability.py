@@ -52,4 +52,4 @@ def satisfiability(model: Model, max_length):
     if ans is None:
         return {"found_model": False, "reached_horizon": a}
     else:
-        return {"found_model": True, "reached_horizon": a, "witness": ans}  
+        return {"found_model": True, "reached_horizon": a, "witness": ans}
