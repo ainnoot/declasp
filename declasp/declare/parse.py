@@ -52,8 +52,8 @@ def declare_constraint_from_json(json_constraint):
 def declare_model_from_json(json_model_path):
     import json
     model = Model()
-	with open(json_model_path, 'r') as f:
+    with open(json_model_path, 'r') as f:
         json_model = json.load(f)
         for json_constraint in json_model:
-		    model.add_constraint(declare_constraint_from_json(json_constraint))
+   	    model.add_constraint(declare_constraint_from_json(json_constraint))
     return model
