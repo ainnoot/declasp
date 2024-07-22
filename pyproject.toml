@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "declasp"
-version = "0.0.1"
+version = "0.0.2"
 description = ""
 authors = ["Antonio Ielo <antonio.ielo@unical.it>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.12"
 clingo = "^5.7.1"
 polars = "^0.20.24"
 rustxes = "^0.2.2"
