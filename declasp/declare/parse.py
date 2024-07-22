@@ -1,6 +1,7 @@
 from declasp.declare.declare_constraints import (
     Choice,
     ExclusiveChoice,
+    RespondedExistence,
     Response,
     AlternateResponse,
     ChainResponse,
@@ -18,6 +19,7 @@ from declasp.declare.model import Model
 __KNOWN_DECLARE_CONSTRAINTS__ = {
     "Choice": Choice,
     "Exclusive Choice": ExclusiveChoice,
+    "Responded Existence": RespondedExistence,
     "Response": Response,
     "Precedence": Precedence,
     "Succession": Succession,

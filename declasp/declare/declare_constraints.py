@@ -21,6 +21,12 @@ class Response(C.Constraint):
 
 
 @dataclasses.dataclass(frozen=True, init=False)
+class RespondedExistence(C.Constraint):
+    def __init__(self, a, b):
+        super().__init__("Responded Existence", (a, b))
+
+
+@dataclasses.dataclass(frozen=True, init=False)
 class Precedence(C.Constraint):
     def __init__(self, a, b):
         super().__init__("Precedence", (a, b))
