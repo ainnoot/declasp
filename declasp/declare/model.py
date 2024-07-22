@@ -10,6 +10,9 @@ class Model:
     def has_variables(self):
         return len(self.variables) > 0
 
+    def __len__(self):
+        return len(self.constraints)
+
     def add_constraint(self, c: Constraint):
         self.constraints.append(c)
         for arg in c.arguments:
