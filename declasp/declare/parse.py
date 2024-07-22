@@ -49,8 +49,11 @@ def declare_constraint_from_json(json_constraint):
     return __KNOWN_DECLARE_CONSTRAINTS__[template](*params)
 
 
-def declare_model_from_json(json_model):
+def declare_model_from_json(json_model_path):
+    import json
     model = Model()
-    for json_constraint in json_model:
-        model.add_constraint(declare_constraint_from_json(json_constraint))
+	with open(json_model_path, 'r') as f:
+        json_model = json.load(f)
+        for json_constraint in json_model:
+		    model.add_constraint(declare_constraint_from_json(json_constraint))
     return model
