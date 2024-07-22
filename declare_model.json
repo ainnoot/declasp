@@ -1,0 +1,22 @@
+[
+	{
+		"template": "Chain Response",
+		"arguments": ["ER Triage", "IV Liquid"]
+	},
+	{
+		"template": "Response",
+		"arguments": ["ER Triage", "CRP"]
+	},
+	{
+		"template": "Precedence",
+		"arguments": ["IV Liquid", "CRP"]
+	},
+	{
+		"template": "Response",
+		"arguments": ["ER Sepsis Triage", "CRP"]
+	},
+	{
+		"template": "Choice",
+		"arguments": ["ER Triage", "ER Sepsis Triage"]
+	}
+]
